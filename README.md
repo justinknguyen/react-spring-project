@@ -17,9 +17,9 @@ npm run deploy
 node --version
 npm --version
 ```
-1. Make changes
-2. cd to the `react-frontend` project folder and run:
+1. cd to the `react-frontend` project folder and run:
 ```
 npm start
 ```
-3. The website will start in your browser
+2. The website will start in your browser
+3. Make changes and see it change simultaneously
