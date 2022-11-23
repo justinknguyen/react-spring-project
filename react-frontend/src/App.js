@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App container py-3">
       <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
-        <LinkContainer to="/">
+        <LinkContainer to="/react-spring-project/">
           <Navbar.Brand className="font-weight-bold text-muted">
             Student Registration
           </Navbar.Brand>
@@ -31,7 +31,19 @@ function App() {
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
           {isAuthenticated ? (
-            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+            <>
+              <LinkContainer to="/react-spring-project/">
+                <Nav.Link>Enroll</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/react-spring-project/">
+                <Nav.Link>View Courses</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/react-spring-project/">
+                <Nav.Link>Edit Courses</Nav.Link>
+              </LinkContainer>
+
+              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+            </>
           ) : (
             <>
               <LinkContainer to="/react-spring-project/">
