@@ -1,6 +1,7 @@
 {
   "name": "607-project",
   "version": "0.1.0",
+  "homepage": "https://justinknguyen.github.io/607-Project",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
