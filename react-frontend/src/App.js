@@ -23,11 +23,17 @@ function App() {
   return (
     <div className="App container py-3">
       <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
-        <LinkContainer to="/react-spring-project/">
+        {isAuthenticated ? (
+          <LinkContainer to="/react-spring-project/home">
+            <Navbar.Brand className="font-weight-bold text-muted">
+              Student Registration
+            </Navbar.Brand>
+          </LinkContainer>
+        ) : (
           <Navbar.Brand className="font-weight-bold text-muted">
-            Student Registration
+              Student Registration
           </Navbar.Brand>
-        </LinkContainer>
+        )}
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
