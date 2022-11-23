@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAppContext } from "../lib/contextLib";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./styles/Login.css";
 
 export default function Login() {
   const nav = useNavigate();
@@ -10,16 +10,19 @@ export default function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { userHasAuthenticated } = useAppContext();
+  const { userType } = useAppContext();
 
   // User Login info
   const database = [
     {
-      username: "user1",
-      password: "pass1"
+      type: "student",
+      username: "student",
+      password: "pass"
     },
     {
-      username: "user2",
-      password: "pass2"
+      type: "admin",
+      username: "admin",
+      password: "pass"
     }
   ];
 
@@ -45,6 +48,11 @@ export default function Login() {
         } else {
           setIsSubmitted(true);
           userHasAuthenticated(true)
+          if (userData.type === "student") {
+            userType(true)
+          } else if (userData.type === "admin") {
+            userType(false)
+          }
           nav("/react-spring-project/home");
         }
       } else {
