@@ -5,7 +5,7 @@ node --version
 npm --version
 ```
 1. Make changes
-2. cd to the project folder and run:
+2. cd to the `react-frontend` project folder and run:
 ```
 npm run deploy
 ```
@@ -18,7 +18,7 @@ node --version
 npm --version
 ```
 1. Make changes
-2. cd to the project folder and run:
+2. cd to the `react-frontend` project folder and run:
 ```
 npm start
 ```
