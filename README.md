@@ -9,4 +9,4 @@ npm --version
 ```
 npm run deploy
 ```
-3. Push changes to the GitHub repo
+3. Wait until website is deployed again
