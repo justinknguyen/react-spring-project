@@ -38,32 +38,32 @@ function App() {
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
           {isAuthenticated ? ( 
-            isuserType ? (
-              <>
-                <LinkContainer to="/react-spring-project/enroll">
-                  <Nav.Link>Enroll</Nav.Link>
+            isuserType ? ( // student view
+              <> 
+                <LinkContainer to="/react-spring-project/studentsearch">
+                  <Nav.Link>Search</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/react-spring-project/courseview">
-                  <Nav.Link>View Courses</Nav.Link>
+                <LinkContainer to="/react-spring-project/studentadd">
+                  <Nav.Link>Add</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/react-spring-project/courseedit">
-                  <Nav.Link>Edit Courses</Nav.Link>
+                <LinkContainer to="/react-spring-project/studentremove">
+                  <Nav.Link>Remove</Nav.Link>
                 </LinkContainer>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               </>
-            ) : (
+            ) : (  // admin view
               <>
-              <LinkContainer to="/react-spring-project/addstudent">
-                  <Nav.Link>Add Student</Nav.Link>
+                <LinkContainer to="/react-spring-project/adminsearch">
+                  <Nav.Link>Search</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/react-spring-project/enroll">
-                  <Nav.Link>Add Course</Nav.Link>
+                <LinkContainer to="/react-spring-project/adminadd">
+                  <Nav.Link>Add</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/react-spring-project/courseview">
-                  <Nav.Link>View Courses</Nav.Link>
+                <LinkContainer to="/react-spring-project/adminremove">
+                  <Nav.Link>Remove</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/react-spring-project/courseedit">
-                  <Nav.Link>Edit Courses</Nav.Link>
+                <LinkContainer to="/react-spring-project/adminedit">
+                  <Nav.Link>Edit</Nav.Link>
                 </LinkContainer>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               </>
