@@ -9,12 +9,11 @@ import { useState } from 'react';
 export default function AddStudentCourse() {
   const paperStyle = {padding:'50px 20px', width:600, margin:'20px auto'}
   const [sid,setSid] = useState('')
-  const [cname,setCname] = useState('')
   const [cid,setCid] = useState('')
 
   const handleClick=(e)=>{
     e.preventDefault()
-    const studentcourse={sid, cid, cname}
+    const studentcourse={sid, cid}
     console.log(studentcourse)
     // TODO: send data to database
   }
@@ -37,14 +36,11 @@ export default function AddStudentCourse() {
       value = {sid}
       onChange={(e)=>setSid(e.target.value)}
       />
-      <TextField required id="outlined-required" label="Course Name" variant="outlined" fullWidth
-      value = {cname}
-      onChange={(e)=>setCname(e.target.value)}
-      />
-      <TextField required id="outlined-required" label="Course ID" variant="outlined" fullWidth
+      <TextField required id="outlined-required" label="Course ID (e.g., ENSF608)" variant="outlined" fullWidth
       value = {cid}
       onChange={(e)=>setCid(e.target.value)}
       />
+      
       <Button variant="contained" onClick={handleClick}>
         Submit
       </Button>
