@@ -6,11 +6,11 @@ export default function AdminRemove() {
   return (
     <div className="AdminRemove">
       <div className="lander">
-        <h1><Link to='/react-spring-project/removestudent'>Remove Student</Link></h1>
+        <h1><Link className="link" to='/react-spring-project/removestudent'>Remove Student</Link></h1>
         <br></br>
-        <h1><Link to='/react-spring-project/removecourse'>Remove Course</Link></h1>
+        <h1><Link className="link" to='/react-spring-project/removecourse'>Remove Course</Link></h1>
         <br></br>
-        <h1><Link to='/react-spring-project/removestudentcourse'>Remove Student from Course</Link></h1>
+        <h1><Link className="link" to='/react-spring-project/removestudentcourse'>Remove Student from Course</Link></h1>
       </div>
     </div>
   );

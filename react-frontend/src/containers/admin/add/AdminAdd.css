@@ -6,12 +6,13 @@
 .AdminAdd .lander h1 {
 font-family: "Open Sans", sans-serif;
 font-weight: 600;
+
 }
 
-a {
+.link {
     color: grey;
 }
   
-a:hover {
+.link:hover {
     color: black;
 }
