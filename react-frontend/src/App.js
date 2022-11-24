@@ -53,7 +53,7 @@ function App() {
               </>
             ) : (
               <>
-              <LinkContainer to="/react-spring-project/enroll">
+              <LinkContainer to="/react-spring-project/addstudent">
                   <Nav.Link>Add Student</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/react-spring-project/enroll">

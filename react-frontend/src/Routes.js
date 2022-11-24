@@ -7,6 +7,7 @@ import Home from "./containers/Home";
 import Enroll from "./containers/Enroll";
 import CourseView from "./containers/CourseView";
 import CourseEdit from "./containers/CourseEdit";
+import AddStudent from "./containers/AddStudent";
 
 
 export default function Links() {
@@ -17,6 +18,7 @@ export default function Links() {
         <Route path="/react-spring-project/enroll" element={<Enroll />} />
         <Route path="/react-spring-project/courseview" element={<CourseView />} />
         <Route path="/react-spring-project/courseedit" element={<CourseEdit />} />
+        <Route path="/react-spring-project/addstudent" element={<AddStudent />} />
         {
           /* Finally, catch all unmatched routes */
         }
