@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AddStudent() {
   const paperStyle = {padding:'50px 20px', width:600, margin:'20px auto'}
@@ -19,6 +19,14 @@ export default function AddStudent() {
     const student={id, fname, lname, uname, pass}
     console.log(student)
     // TODO: send data to database
+    fetch("http://localhost:8080/api/v1/student", 
+    {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(student)
+    }).then(()=>{
+      console.log("New Student Added")
+    })
   }
 
   return (

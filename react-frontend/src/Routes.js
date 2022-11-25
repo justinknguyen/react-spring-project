@@ -12,7 +12,10 @@ import AdminAdd from "./containers/admin/add/AdminAdd";
 
 import AdminRemove from "./containers/admin/remove/AdminRemove";
 import AdminEdit from "./containers/admin/edit/AdminEdit";
+
 import AdminSearch from "./containers/admin/search/AdminSearch";
+import ViewStudents from "./containers/admin/search/ViewStudents";
+import ViewCourses from "./containers/admin/search/ViewCourses";
 
 import StudentAdd from "./containers/student/add/StudentAdd";
 import StudentSearch from "./containers/student/search/StudentSearch";
@@ -30,7 +33,10 @@ export default function Links() {
 
         <Route path="/react-spring-project/adminremove" element={<AdminRemove />} />
         <Route path="/react-spring-project/adminedit" element={<AdminEdit />} />
+
         <Route path="/react-spring-project/adminsearch" element={<AdminSearch />} />
+        <Route path="/react-spring-project/viewstudents" element={<ViewStudents />} />
+        <Route path="/react-spring-project/viewcourses" element={<ViewCourses />} />
 
         <Route path="/react-spring-project/studentadd" element={<StudentAdd />} />
         <Route path="/react-spring-project/studentsearch" element={<StudentSearch />} />
