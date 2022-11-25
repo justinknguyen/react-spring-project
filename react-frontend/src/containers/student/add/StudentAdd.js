@@ -8,6 +8,8 @@ import { useState } from 'react';
 
 export default function StudentAdd() {
   const paperStyle = {padding:'50px 20px', width:600, margin:'20px auto'}
+  const [isError, setIsError] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [cid,setCid] = useState('')
 
   const handleClick=(e)=>{
@@ -15,6 +17,20 @@ export default function StudentAdd() {
     const course={cid}
     console.log(course)
     // TODO: send data to database
+    fetch("http://localhost:8080/api/v1/course", 
+    {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(course)
+    }).then(()=>{
+      console.log("Course Added")
+      setIsSubmitted(true);
+      setIsError(false);
+    }).catch(()=>{
+      console.log("Error")
+      setIsError(true);
+      setIsSubmitted(false);
+    })
   }
 
   return (
@@ -41,6 +57,13 @@ export default function StudentAdd() {
       </Button>
     </Box>
     </Paper>
+    <Paper elevation={3} style={paperStyle}>
+        <h1>Response</h1>
+        {isSubmitted ? <div>You've successfully enrolled into this course!</div> : 
+                        <div></div>}
+        {isError ? <div>Error. Please try again.</div> : 
+                        <div></div>}
+      </Paper>
     </Container>
   );
 }

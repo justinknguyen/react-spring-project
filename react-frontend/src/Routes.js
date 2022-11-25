@@ -11,6 +11,10 @@ import AddStudentCourse from "./containers/admin/add/AddStudentCourse";
 import AdminAdd from "./containers/admin/add/AdminAdd";
 
 import AdminRemove from "./containers/admin/remove/AdminRemove";
+import RemoveCourse from "./containers/admin/remove/RemoveCourse";
+import RemoveStudent from "./containers/admin/remove/RemoveStudent";
+import RemoveStudentCourse from "./containers/admin/remove/RemoveStudentCourse";
+
 import AdminEdit from "./containers/admin/edit/AdminEdit";
 
 import AdminSearch from "./containers/admin/search/AdminSearch";
@@ -18,6 +22,7 @@ import ViewStudents from "./containers/admin/search/ViewStudents";
 import ViewCourses from "./containers/admin/search/ViewCourses";
 
 import StudentAdd from "./containers/student/add/StudentAdd";
+import StudentRemove from "./containers/student/remove/StudentRemove";
 import StudentSearch from "./containers/student/search/StudentSearch";
 
 export default function Links() {
@@ -32,6 +37,10 @@ export default function Links() {
         <Route path="/react-spring-project/addstudentcourse" element={<AddStudentCourse />} />
 
         <Route path="/react-spring-project/adminremove" element={<AdminRemove />} />
+        <Route path="/react-spring-project/removecourse" element={<RemoveCourse />} />
+        <Route path="/react-spring-project/removestudent" element={<RemoveStudent />} />
+        <Route path="/react-spring-project/removestudentcourse" element={<RemoveStudentCourse />} />
+
         <Route path="/react-spring-project/adminedit" element={<AdminEdit />} />
 
         <Route path="/react-spring-project/adminsearch" element={<AdminSearch />} />
@@ -39,6 +48,7 @@ export default function Links() {
         <Route path="/react-spring-project/viewcourses" element={<ViewCourses />} />
 
         <Route path="/react-spring-project/studentadd" element={<StudentAdd />} />
+        <Route path="/react-spring-project/studentremove" element={<StudentRemove />} />
         <Route path="/react-spring-project/studentsearch" element={<StudentSearch />} />
         {
           /* Finally, catch all unmatched routes */
