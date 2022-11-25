@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 
 export default function AddStudent() {
   const paperStyle = {padding:'50px 20px', width:600, margin:'20px auto'}
+  const [isError, setIsError] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [id,setId] = useState('')
   const [fname,setFname] = useState('')
   const [lname,setLname] = useState('')
@@ -26,6 +28,12 @@ export default function AddStudent() {
       body:JSON.stringify(student)
     }).then(()=>{
       console.log("New Student Added")
+      setIsSubmitted(true);
+      setIsError(false);
+    }).catch(()=>{
+      console.log("Error")
+      setIsError(true);
+      setIsSubmitted(false);
     })
   }
 
@@ -68,6 +76,13 @@ export default function AddStudent() {
       </Button>
     </Box>
     </Paper>
+    <Paper elevation={3} style={paperStyle}>
+        <h1>Response</h1>
+        {isSubmitted ? <div>Student successfully added to database!</div> : 
+                        <div></div>}
+        {isError ? <div>Error. Please try again.</div> : 
+                        <div></div>}
+      </Paper>
     </Container>
   );
 }

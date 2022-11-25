@@ -10,7 +10,7 @@ export default function StudentSearch() {
         <br></br>
         <h1><Link className="link" to='/react-spring-project/viewenrolledcourses'>View Enrolled Courses</Link></h1>
         <br></br>
-        <h1><Link className="link" to='/react-spring-project/viewallcourses'>View All Courses</Link></h1>
+        <h1><Link className="link" to='/react-spring-project/viewcourses'>View All Courses</Link></h1>
       </div>
     </div>
   );
