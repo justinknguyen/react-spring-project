@@ -5,14 +5,13 @@
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  height: 100vh;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  height: 60vh;
   background-color: #f8f9fd;
 }
 
 input[type="text"],
 input[type="password"] {
-  height: 25px;
+  height: 30px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -20,14 +19,14 @@ input[type="submit"] {
   margin-top: 10px;
   cursor: pointer;
   font-size: 15px;
-  background: #01d28e;
-  border: 1px solid #01d28e;
+  background: rgb(85, 85, 255);
+  border: 1px solid blue;
   color: #fff;
   padding: 10px 20px;
 }
 
 input[type="submit"]:hover {
-  background: #6cf0c2;
+  background: blue;
 }
 
 .button-container {
@@ -51,13 +50,13 @@ input[type="submit"]:hover {
 }
 
 .title {
-  font-size: 25px;
+  font-size: 35px;
   margin-bottom: 20px;
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: 10px;
+  gap: 4px;
+  margin: 20px;
 }
