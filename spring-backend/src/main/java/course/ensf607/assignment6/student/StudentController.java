@@ -34,6 +34,13 @@ public class StudentController {
         studentService.deleteStudent(studentId);
     }
 
+    @PutMapping(path = "{studentId}")
+    public void updateStudentPassword(@PathVariable("studentId") Long studentId,
+                              @RequestParam String oldPassword,
+                              @RequestParam String newPassword) {
+        studentService.updateStudentPassword(studentId, oldPassword, newPassword);
+    }
+
     public Optional<Student> searchStudentByUcid(String ucid){
         return studentService.searchStudentByUcid(ucid);
     }
