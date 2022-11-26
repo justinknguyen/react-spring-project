@@ -23,11 +23,19 @@ public class Student implements Serializable {
             generator = "student_sequence"
     )
     private Long id;
-
+    @Column(
+            name = "username",
+            unique = true
+    )
     private String username;
-
+    @Column(
+            name = "password"
+    )
     private String password;
-
+    @Column(
+            name = "ucid",
+            updatable = false
+    )
     private String ucid;
 
     @JsonIgnore
