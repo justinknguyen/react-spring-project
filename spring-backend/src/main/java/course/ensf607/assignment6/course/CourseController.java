@@ -52,4 +52,9 @@ public class CourseController {
     public Optional<Course> searchCourse(String courseName){
         return courseService.searchCourse(courseName);
     }
+    @PutMapping(path = "{courseId}")
+    public void updateCourseName(@PathVariable("courseId") Long courseId,
+                                 String courseName){
+        courseService.updateCourseName(courseId, courseName);
+    }
 }
