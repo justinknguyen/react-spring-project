@@ -3,7 +3,9 @@ package course.ensf607.assignment6.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/student")
@@ -32,4 +34,7 @@ public class StudentController {
         studentService.deleteStudent(studentId);
     }
 
+    public Optional<Student> searchStudentByUcid(String ucid){
+        return studentService.searchStudentByUcid(ucid);
+    }
 }
