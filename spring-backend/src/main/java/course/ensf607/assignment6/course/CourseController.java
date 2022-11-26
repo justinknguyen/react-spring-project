@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -46,5 +47,9 @@ public class CourseController {
     @DeleteMapping(path = "{courseId}")
     public void deleteCourse(@PathVariable("courseId") Long courseId){
         courseService.deleteCourse(courseId);
+    }
+
+    public Optional<Course> searchCourse(String courseName){
+        return courseService.searchCourse(courseName);
     }
 }
