@@ -2,6 +2,7 @@ package course.ensf607.assignment6.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.util.List;
@@ -53,5 +54,17 @@ public class CourseService {
     public Optional<Course> searchCourse(String courseName) {
         Optional<Course>courseByCourseName = courseRepository.findByName(courseName);
         return courseByCourseName;
+    }
+    @Transactional
+    public void updateCourseName(Long courseId, String courseName) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Course id " + courseId + "does not exist"));
+        if (courseName.equals(course.getName())){
+            throw new IllegalArgumentException("Changing to same course name");
+        }
+        if (courseName != null && courseName.length() > 0){
+            course.setName(courseName);
+        }
     }
 }
