@@ -39,4 +39,13 @@ public class CourseService {
         }
         return courseById.get();
     }
+
+    public void deleteCourse(Long courseId) {
+        if (!courseRepository.existsById(courseId)){
+            throw new IllegalStateException(
+                    "course id " + courseId + "does not exist"
+            );
+        }
+        courseRepository.deleteById(courseId);
+    }
 }
