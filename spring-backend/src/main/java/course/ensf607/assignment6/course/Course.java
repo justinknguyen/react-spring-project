@@ -23,15 +23,26 @@ public class Course implements Serializable {
             generator = "course_sequence"
     )
     private Long id;
-
+    @Column(
+            name = "name",
+            unique = true
+    )
     private String name;
-
+    @Column(
+            name = "start_time"
+    )
     private LocalDate startTime;
-
+    @Column(
+            name = "end_time"
+    )
     private LocalDate endTime;
-
+    @Column(
+            name = "capacity"
+    )
     private Integer capacity;
-
+    @Column(
+            name = "has_prerequisite"
+    )
     private Boolean hasPrerequisite;
 
     @ManyToMany
