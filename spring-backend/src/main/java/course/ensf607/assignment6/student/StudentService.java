@@ -44,4 +44,9 @@ public class StudentService {
         }
         studentRepository.deleteById(studentId);
     }
+
+    public Optional<Student> searchStudentByUcid(String ucid) {
+        Optional<Student> studentByUcid = studentRepository.findStudentByUcid(ucid);
+        return studentByUcid;
+    }
 }
