@@ -1,4 +1,10 @@
-# How to Run
+# Login Information
+## Default Logins
+### Admin
+admin : pass
+### Student
+student : pass
+## Database Logins
 
 
 # Updating the Website on Github Pages
