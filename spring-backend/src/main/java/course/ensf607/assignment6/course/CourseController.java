@@ -49,9 +49,11 @@ public class CourseController {
         courseService.deleteCourse(courseId);
     }
 
+    @GetMapping(path = "{courseName}")
     public Optional<Course> searchCourse(String courseName){
         return courseService.searchCourse(courseName);
     }
+
     @PutMapping(path = "{courseId}")
     public void updateCourseName(@PathVariable("courseId") Long courseId,
                                  String courseName){

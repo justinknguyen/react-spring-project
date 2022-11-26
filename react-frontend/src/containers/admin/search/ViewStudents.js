@@ -24,10 +24,10 @@ export default function ViewStudents() {
       <h1>Students</h1>
         {students.map(student=>(
           <Paper elevation={6} style={{margin:"10px",padding:"15px",textAlign:"left"}} key={student.id}>
-            ID:{student.id},
             UCID:{student.ucid},
             Username:{student.username},
-            Password:{student.password}
+            Password:{student.password} <br></br>
+            Courses:{student.subjects}
           </Paper>
         ))}
       </Paper>

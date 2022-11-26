@@ -24,9 +24,13 @@ export default function ViewCourses() {
       <h1>Courses</h1>
         {courses.map(course=>(
           <Paper elevation={6} style={{margin:"10px",padding:"15px",textAlign:"left"}} key={course.id}>
-            ID:{course.id},
+            ID:{course.id}, 
             Name:{course.name},
-            Capacity:{course.capacity}
+            Capacity:{course.capacity} <br></br>
+            Start Time:{course.startTime},
+            End Time:{course.endTime} <br></br>
+            Has Prerequisite:{course.hasPrerequisite ? 'yes' : 'no'}, <br></br>
+            Enrolled Students:{course.enrolledStudents}
           </Paper>
         ))}
       </Paper>

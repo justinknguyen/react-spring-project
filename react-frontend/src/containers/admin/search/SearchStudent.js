@@ -18,16 +18,29 @@ export default function SearchStudent() {
     const s={id}
     console.log(s)
     // TODO: send data to database
-    
+    fetch("http://localhost:8080/api/v1/student/"+id, 
+    {
+      method:"GET",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(s)
+    }).then(()=>{
+      console.log("Student Retrieved")
+      setIsSubmitted(true);
+      setIsError(false);
+    }).catch(()=>{
+      console.log("Error")
+      setIsError(true);
+      setIsSubmitted(false);
+    })
   }
 
-  useEffect(()=>{
-    fetch("http://localhost:8080/api/v1/student")
-    .then(res=>res.json())
-    .then(result=>{
-      setStudent(result);
-    })
-  })
+  // useEffect(()=>{
+  //   fetch("http://localhost:8080/api/v1/student")
+  //   .then(res=>res.json())
+  //   .then(result=>{
+  //     setStudent(result);
+  //   })
+  // })
 
   return (
     <Container>

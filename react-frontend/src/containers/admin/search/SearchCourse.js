@@ -18,16 +18,29 @@ export default function SearchCourse() {
     const c={id}
     console.log(c)
     // TODO: send data to database
-    
+    fetch("http://localhost:8080/api/v1/course/"+id, 
+    {
+      method:"GET",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(c)
+    }).then(()=>{
+      console.log("Course Retrieved")
+      setIsSubmitted(true);
+      setIsError(false);
+    }).catch(()=>{
+      console.log("Error")
+      setIsError(true);
+      setIsSubmitted(false);
+    })
   }
 
-  useEffect(()=>{
-    fetch("http://localhost:8080/api/v1/course")
-    .then(res=>res.json())
-    .then(result=>{
-      setCourse(result);
-    })
-  })
+  // useEffect(()=>{
+  //   fetch("http://localhost:8080/api/v1/course"+id)
+  //   .then(res=>res.json())
+  //   .then(result=>{
+  //     setCourse(result);
+  //   })
+  // })
 
   return (
     <Container>

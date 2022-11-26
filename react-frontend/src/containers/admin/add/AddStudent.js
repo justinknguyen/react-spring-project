@@ -11,14 +11,12 @@ export default function AddStudent() {
   const [isError, setIsError] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [id,setId] = useState('')
-  const [fname,setFname] = useState('')
-  const [lname,setLname] = useState('')
   const [uname,setUname] = useState('')
   const [pass,setPass] = useState('')
 
   const handleClick=(e)=>{
     e.preventDefault()
-    const student={id, fname, lname, uname, pass}
+    const student={id, uname, pass}
     console.log(student)
     // TODO: send data to database
     fetch("http://localhost:8080/api/v1/student", 
@@ -51,17 +49,9 @@ export default function AddStudent() {
       noValidate
       autoComplete="off"
     >
-      <TextField required id="outlined-required" label="Student ID" variant="outlined" fullWidth
+      <TextField required id="outlined-required" label="UCID" variant="outlined" fullWidth
       value = {id}
       onChange={(e)=>setId(e.target.value)}
-      />
-      <TextField required id="outlined-required" label="First Name" variant="outlined" fullWidth
-      value = {fname}
-      onChange={(e)=>setFname(e.target.value)}
-      />
-      <TextField required id="outlined-required" label="Last Name" variant="outlined" fullWidth
-      value = {lname}
-      onChange={(e)=>setLname(e.target.value)}
       />
       <TextField required id="outlined-required" label="Username" variant="outlined" fullWidth
       value = {uname}
