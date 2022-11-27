@@ -13,7 +13,7 @@ export default function SearchCourse() {
 		margin: "20px auto",
 	};
 	const [isError, setIsError] = useState(false);
-	const [isSubmitted, setIsSubmitted] = useState(false);
+	// const [isSubmitted, setIsSubmitted] = useState(false);
 	const [id, setId] = useState("");
 	const [course, setCourse] = useState();
 
@@ -41,7 +41,7 @@ export default function SearchCourse() {
 			.catch(() => {
 				console.log("Error");
 				setIsError(true);
-				setIsSubmitted(false);
+				// setIsSubmitted(false);
 			});
 	};
 
