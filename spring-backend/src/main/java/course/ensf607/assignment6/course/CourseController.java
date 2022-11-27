@@ -44,9 +44,9 @@ public class CourseController {
         return course;
     }
 
-    @DeleteMapping(path = "{courseId}")
-    public void deleteCourse(@PathVariable("courseId") Long courseId){
-        courseService.deleteCourse(courseId);
+    @DeleteMapping(path = "{courseName}")
+    public void deleteCourse(@PathVariable("courseName") String courseName){
+        courseService.deleteCourse(courseName);
     }
 
     @GetMapping(path = "{courseName}")

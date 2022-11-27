@@ -42,13 +42,14 @@ public class CourseService {
         return courseById.get();
     }
 
-    public void deleteCourse(Long courseId) {
-        if (!courseRepository.existsById(courseId)){
+    public void deleteCourse(String courseName) {
+        Optional<Course>courseByName = courseRepository.findByName(courseName);
+        if (!courseByName.isPresent()){
             throw new IllegalStateException(
-                    "course id " + courseId + "does not exist"
+                    "course id " + courseName + "does not exist"
             );
         }
-        courseRepository.deleteById(courseId);
+        courseRepository.deleteById(courseByName.get().getId());
     }
 
     public Optional<Course> searchCourse(String courseName) {
