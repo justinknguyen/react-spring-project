@@ -35,6 +35,7 @@ export default function SearchCourse() {
 			)
 			.then((data) => {
 				// setIsSubmitted(true);
+				console.log(data);
 				setIsError(false);
 				setCourse(data);
 			})
@@ -90,8 +91,10 @@ export default function SearchCourse() {
 				<h1>Response</h1>
 				{course ? (
 					<div>
-						ID:{course.id}, Name:{course.name}, Capacity:
-						{course.capacity}
+						Name:{course.name}, Capacity:
+						{course.capacity}, Has Prerequisites:
+						{course.hasPrerequisite.toString()}, Start Date:{" "}
+						{course.startTime}
 					</div>
 				) : (
 					<div></div>
