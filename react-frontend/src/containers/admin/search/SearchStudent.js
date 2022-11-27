@@ -31,14 +31,14 @@ export default function SearchStudent() {
 				return response.json();
 			})
 			.then((data) => {
-				setIsSubmitted(true);
+				// setIsSubmitted(true);
 				setIsError(false);
 				setStudent(data);
 			})
 			.catch(() => {
 				console.log("Error");
 				setIsError(true);
-				setIsSubmitted(false);
+				// setIsSubmitted(false);
 			});
 	};
 
