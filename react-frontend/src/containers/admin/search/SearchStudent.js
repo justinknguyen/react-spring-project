@@ -87,7 +87,7 @@ export default function SearchStudent() {
 				<h1>Response</h1>
 				{student ? (
 					<div>
-						ID:{student.id}, Name:{student.username}
+						ID:{student.ucid}, Name:{student.username}
 					</div>
 				) : (
 					<div></div>
