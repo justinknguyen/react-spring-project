@@ -50,7 +50,7 @@ public class CourseController {
     }
 
     @GetMapping(path = "{courseName}")
-    public Optional<Course> searchCourse(String courseName){
+    public Optional<Course> searchCourse(@PathVariable("courseName") String courseName){
         return courseService.searchCourse(courseName);
     }
 
