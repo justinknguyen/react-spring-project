@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,13 +38,14 @@ public class StudentService {
         }
         return studentById.get();
     }
-    public void deleteStudent(Long studentId) {
-        if (!studentRepository.existsById(studentId)){
+    public void deleteStudent(String ucid) {
+        Optional<Student>studentByUcid = studentRepository.findStudentByUcid(ucid);
+        if (!studentByUcid.isPresent()){
             throw new IllegalStateException(
-                    "student with id" + studentId + "does not exist"
+                    "student with id" + ucid + "does not exist"
             );
         }
-        studentRepository.deleteById(studentId);
+        studentRepository.deleteById(studentByUcid.get().getId());
     }
 
     public Optional<Student> searchStudentByUcid(String ucid) {
@@ -59,4 +61,6 @@ public class StudentService {
         }
         studentById.setPassword(newPassword);
     }
+
+
 }

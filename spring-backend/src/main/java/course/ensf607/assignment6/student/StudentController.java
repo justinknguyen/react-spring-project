@@ -3,7 +3,6 @@ package course.ensf607.assignment6.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,9 +28,9 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
-    @DeleteMapping(path = "{studentId}")
-    public void deleteStudent(@PathVariable("studentId") Long studentId){
-        studentService.deleteStudent(studentId);
+    @DeleteMapping(path = "{ucid}")
+    public void deleteStudent(@PathVariable("ucid") String ucid){
+        studentService.deleteStudent(ucid);
     }
 
     @PutMapping(path = "{studentId}")
