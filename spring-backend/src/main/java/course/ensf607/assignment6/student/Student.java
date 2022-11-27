@@ -33,8 +33,7 @@ public class Student implements Serializable {
     )
     private String password;
     @Column(
-            name = "ucid",
-            updatable = false
+            name = "ucid"
     )
     private String ucid;
 
