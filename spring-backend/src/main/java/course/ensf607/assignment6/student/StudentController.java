@@ -41,8 +41,10 @@ public class StudentController {
         studentService.updateStudentPassword(studentId, oldPassword, newPassword);
     }
 
-    @GetMapping(path = "{studentId}")
-    public Optional<Student> searchStudentByUcid(String ucid){
+    @GetMapping(path = "{ucid}")
+    public Optional<Student> searchStudentByUcid(@PathVariable("ucid") String ucid){
         return studentService.searchStudentByUcid(ucid);
     }
+
+
 }
