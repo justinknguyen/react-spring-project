@@ -42,6 +42,14 @@ public class CourseService {
         return courseById.get();
     }
 
+    public Course getCourseByCourseName(String courseName) {
+        Optional<Course> courseByCourseName = courseRepository.findByName(courseName);
+        if (!courseByCourseName.isPresent()){
+            throw new IllegalStateException("Course does'nt exist!");
+        }
+        return courseByCourseName.get();
+    }
+
     public void deleteCourse(String courseName) {
         Optional<Course>courseByName = courseRepository.findByName(courseName);
         if (!courseByName.isPresent()){
@@ -68,4 +76,6 @@ public class CourseService {
             course.setName(courseName);
         }
     }
+
+
 }
