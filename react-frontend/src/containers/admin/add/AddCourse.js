@@ -95,14 +95,14 @@ export default function AddCourse() {
 						onChange={(e) => setId(e.target.value)}
 					/>
 
-					{/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<DatePicker
 							label="Start Date"
 							value={startdate}
 							onChange={(newDate) => setStartdate(newDate)}
 							renderInput={(params) => <TextField {...params} />}
 						/>
-					</LocalizationProvider> */}
+					</LocalizationProvider>
 					{/* 
 					<TextField
 						required
