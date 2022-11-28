@@ -28,6 +28,8 @@ export default function AddCourse() {
 	const [p2, setP2] = useState("");
 	const [p3, setP3] = useState("");
 	const [startdate, setStartdate] = useState();
+	const [enddate, setEnddate] = useState();
+
 	const [capacity, setCapacity] = useState(0);
 	const [hasPrerequisite, setHasPrerequisite] = useState(false);
 
@@ -36,6 +38,7 @@ export default function AddCourse() {
 		const course = {
 			name: dept + id,
 			startTime: new Date(startdate.$d).toISOString().substring(0, 10),
+			endTime: new Date(enddate.$d).toISOString().substring(0, 10),
 			capacity: capacity,
 			hasPrerequisite: hasPrerequisite,
 		};
@@ -100,6 +103,15 @@ export default function AddCourse() {
 							label="Start Date"
 							value={startdate}
 							onChange={(newDate) => setStartdate(newDate)}
+							renderInput={(params) => <TextField {...params} />}
+						/>
+					</LocalizationProvider>
+
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DatePicker
+							label="End Date"
+							value={enddate}
+							onChange={(newDate) => setEnddate(newDate)}
 							renderInput={(params) => <TextField {...params} />}
 						/>
 					</LocalizationProvider>
