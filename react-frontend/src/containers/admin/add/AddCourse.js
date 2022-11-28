@@ -103,7 +103,7 @@ export default function AddCourse() {
 							renderInput={(params) => <TextField {...params} />}
 						/>
 					</LocalizationProvider>
-					{/* 
+
 					<TextField
 						required
 						id="outlined-required"
@@ -112,7 +112,7 @@ export default function AddCourse() {
 						fullWidth
 						value={capacity}
 						onChange={(e) => setCapacity(e.target.value)}
-					/> */}
+					/>
 					{/* <div style={{ flexDirection: Row }}>
 						<span>Has Prerequiste?</span>
 						<Checkbox
