@@ -113,7 +113,7 @@ export default function AddCourse() {
 						value={capacity}
 						onChange={(e) => setCapacity(e.target.value)}
 					/>
-					{/* <div style={{ flexDirection: Row }}>
+					<div style={{ flexDirection: Row }}>
 						<span>Has Prerequiste?</span>
 						<Checkbox
 							label="hasPrerequisite"
@@ -121,7 +121,7 @@ export default function AddCourse() {
 								setHasPrerequisite(!hasPrerequisite)
 							}
 						></Checkbox>
-					</div> */}
+					</div>
 
 					<p>Optional (course must exist in database)</p>
 					<TextField
