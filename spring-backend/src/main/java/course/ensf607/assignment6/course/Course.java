@@ -33,7 +33,7 @@ public class Course implements Serializable {
             name = "start_time"
     )
     private LocalDate startTime;
-    @Transient
+    @Column(name = "end_time")
     private LocalDate endTime;
     @Column(
             name = "capacity"
@@ -65,7 +65,7 @@ public class Course implements Serializable {
         this.enrolledStudents = enrolledStudents;
     }
 
-    public Course(String name, LocalDate startTime, Integer capacity, Boolean hasPrerequisite){
+    public Course(String name, LocalDate startTime, LocalDate endTime, Integer capacity, Boolean hasPrerequisite){
         this.name = name;
 //        Integer y = Integer.parseInt(startTime.substring(0, 4));
 //        Integer m = Integer.parseInt(startTime.substring(5, 7));
@@ -74,7 +74,7 @@ public class Course implements Serializable {
         this.startTime = startTime;
         this.capacity = capacity;
         this.hasPrerequisite = hasPrerequisite;
-        this.endTime = this.startTime.plusMonths(4);
+        this.endTime = endTime;
         this.enrolledStudents = new HashSet<Student>();
     }
 //    public Course(String name, LocalDate startTime, LocalDate endTime, Integer capacity, Boolean hasPrerequisite, Set<Student> enrolledStudents) {
