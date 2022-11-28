@@ -17,6 +17,7 @@ public class CourseConfig {
             Course one = new Course(
                     "ENSF607",
                     LocalDate.of(2022, 3, 21),
+                    LocalDate.of(2022, 7, 21),
                     60,
                     false
             );
@@ -24,6 +25,7 @@ public class CourseConfig {
             Course two = new Course(
                     "ENSF608",
                     LocalDate.of(2022, 1, 23),
+                    LocalDate.of(2022, 5, 23),
                     60,
                     false
             );
@@ -31,6 +33,7 @@ public class CourseConfig {
             Course three = new Course(
                     "ENSF611",
                     LocalDate.of(2022, 5, 22),
+                    LocalDate.of(2022, 9, 22),
                     60,
                     false
             );
@@ -38,6 +41,7 @@ public class CourseConfig {
             Course four = new Course(
                     "ENSF615",
                     LocalDate.of(1999, 1, 2),
+                    LocalDate.of(2000, 1, 2),
                     60,
                     false
             );
