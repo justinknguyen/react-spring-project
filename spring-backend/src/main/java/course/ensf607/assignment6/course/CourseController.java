@@ -34,11 +34,11 @@ public class CourseController {
         courseService.addNewCourse(course);
     }
 
-    @PutMapping("{courseId}/students/{studentId}")
-    public Course enrollStudentToCourse(@PathVariable Long courseId,
-                                         @PathVariable Long studentId) {
-        Course course = courseService.getCourseById(courseId);
-        Student student = studentService.getStudentById(studentId);
+    @PutMapping("{courseName}/students/{ucid}")
+    public Course enrollStudentToCourse(@PathVariable String courseName,
+                                         @PathVariable String ucid) {
+        Course course = courseService.getCourseByCourseName(courseName);
+        Student student = studentService.getStudentByUcid(ucid);
         course.enrolledStudents(student);
         courseService.updateCourse(course);
         return course;
