@@ -1,6 +1,7 @@
 package course.ensf607.assignment6.course;
 
 import course.ensf607.assignment6.student.Student;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,9 +33,7 @@ public class Course implements Serializable {
             name = "start_time"
     )
     private LocalDate startTime;
-    @Column(
-            name = "end_time"
-    )
+    @Transient
     private LocalDate endTime;
     @Column(
             name = "capacity"
@@ -66,14 +65,26 @@ public class Course implements Serializable {
         this.enrolledStudents = enrolledStudents;
     }
 
-    public Course(String name, LocalDate startTime, LocalDate endTime, Integer capacity, Boolean hasPrerequisite, Set<Student> enrolledStudents) {
+    public Course(String name, LocalDate startTime, Integer capacity, Boolean hasPrerequisite){
         this.name = name;
+//        Integer y = Integer.parseInt(startTime.substring(0, 4));
+//        Integer m = Integer.parseInt(startTime.substring(5, 7));
+//        Integer d = Integer.parseInt(startTime.substring(8));
+//        this.startTime = LocalDate.of(y, m, d);
         this.startTime = startTime;
-        this.endTime = endTime;
         this.capacity = capacity;
         this.hasPrerequisite = hasPrerequisite;
-        this.enrolledStudents = enrolledStudents;
+        this.endTime = this.startTime.plusMonths(4);
+        this.enrolledStudents = new HashSet<Student>();
     }
+//    public Course(String name, LocalDate startTime, LocalDate endTime, Integer capacity, Boolean hasPrerequisite, Set<Student> enrolledStudents) {
+//        this.name = name;
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//        this.capacity = capacity;
+//        this.hasPrerequisite = hasPrerequisite;
+//        this.enrolledStudents = enrolledStudents;
+//    }
 
     public Long getId() {
         return id;
