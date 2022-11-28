@@ -16,41 +16,33 @@ public class CourseConfig {
         return args -> {
             Course one = new Course(
                     "ENSF607",
-                    LocalDate.now(),
-                    LocalDate.now().plusMonths(4),
+                    LocalDate.of(2022, 3, 21),
                     60,
-                    false,
-                    new HashSet<Student>()
+                    false
             );
 
             Course two = new Course(
                     "ENSF608",
-                    LocalDate.now(),
-                    LocalDate.now().plusMonths(4),
+                    LocalDate.of(2022, 1, 23),
                     60,
-                    false,
-                    new HashSet<Student>()
+                    false
             );
 
             Course three = new Course(
                     "ENSF611",
-                    LocalDate.now(),
-                    LocalDate.now().plusMonths(4),
+                    LocalDate.of(2022, 5, 22),
                     60,
-                    false,
-                    new HashSet<Student>()
+                    false
             );
 
             Course four = new Course(
-                    "ENSF614",
-                    LocalDate.now(),
-                    LocalDate.now().plusMonths(4),
+                    "ENSF615",
+                    LocalDate.of(1999, 1, 2),
                     60,
-                    false,
-                    new HashSet<Student>()
+                    false
             );
 
-            courseRepository.saveAll(
+            courseRepository.saveAllAndFlush(
                     List.of(
                             one, two, three, four
                     )
