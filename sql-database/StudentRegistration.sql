@@ -23,7 +23,6 @@ VALUES
 ('ENGL', 'Department of English Literature and Arts'),
 ('DANG', 'Department of Astrology, Nebulas, and Galaxies');
 
-
 #Create STUDENT Table
 DROP TABLE IF EXISTS STUDENT;
 CREATE TABLE STUDENT(
@@ -45,7 +44,12 @@ VALUES
 ('Spongebob', 'Squarepants', 'MrReady', 'ImR34dy', 97662159),
 ('Tom', 'Nook', 'townPresident', 'bells4lyfe', 32934372),
 ('Joe', 'Smith', 'user', 'pass', 12345678),
-('Mark', 'Rober', 'NasaMan', 'SquirrelsAreCool1', 82227355);
+('Mark', 'Rober', 'NasaMan', 'SquirrelsAreCool1', 82227355),
+('Anna', 'Yortrick', 'beforesunset', 'autoCon3xt', 87415286);
+
+CREATE VIEW STUDENT_NAMES
+AS SELECT LName, FName
+FROM STUDENT;
 
 #Create ADMINISTRATION Table
 DROP TABLE IF EXISTS ADMINISTRATION;
@@ -101,6 +105,47 @@ ADD foreign key (PreReq_CourseID_1) references COURSE(CourseID),
 ADD	foreign key (PreReq_CourseID_2) references COURSE(CourseID),
 ADD	foreign key (PreReq_CourseID_3) references COURSE(CourseID);
 
+#TODO: Can't insert into course if not in department
+
+# Transfering ownership of course from one DeptID to another
+#updates it in course_offering too
+DELIMITER $$
+CREATE TRIGGER COURSE_TRANSFERS_DEPT
+BEFORE UPDATE
+ON COURSE FOR EACH ROW
+BEGIN
+    #Make sure we're not changing the CourseID
+    IF(new.CourseID = old.CourseID) THEN
+    
+		IF EXISTS(SELECT * FROM DEPARTMENT AS d WHERE d.DepartmentID = new.DepartmentID) THEN
+    
+			SET FOREIGN_KEY_CHECKS=0; #disable foreign key checks
+			#Updating the DepartmentID
+			UPDATE COURSE_OFFERING AS co
+			SET co.DeptID = new.DepartmentID
+			WHERE co.DeptID = old.DepartmentID;
+			SET FOREIGN_KEY_CHECKS=1; #re-enable foreign key checks
+            
+		END IF;
+    END IF;
+END$$
+DELIMITER ;
+
+#Create trigger to delete any course_offerings when deleting a course
+#We intentionally will not (and cannot) delete a course that is a pre-req of another course
+DELIMITER $$
+CREATE TRIGGER COURSE_DISCONTINUED
+BEFORE DELETE
+ON COURSE FOR EACH ROW
+BEGIN
+
+	#Delete any course offering we delete from the course list
+	DELETE FROM COURSE_OFFERING AS co
+	WHERE co.CourseID = old.CourseID;
+
+END$$
+DELIMITER ;
+
 #Create COURSE_OFFERING Table
 DROP TABLE IF EXISTS COURSE_OFFERING;
 CREATE TABLE COURSE_OFFERING(
@@ -134,6 +179,37 @@ VALUES
 ('ENGG', 'ENCM511', 'L01', 30),
 ('ENGG', 'ENCM511', 'L02', 30);
 
+#TODO: Can't insert into course_offering if not in course 
+#TODO: Updating DeptID here updates it in registration too
+DELIMITER $$
+CREATE TRIGGER OFFERED_BY_ANOTHER_DEPT
+BEFORE UPDATE
+ON COURSE_OFFERING FOR EACH ROW
+BEGIN
+
+	#Updating the DeptID
+	UPDATE REGISTRATION AS r
+    SET r.DeptID = new.DeptID
+    WHERE r.DeptID = old.DeptID;
+
+END$$
+DELIMITER ;
+
+
+# Create trigger to delete any registration when deleting an offering
+DELIMITER $$
+CREATE TRIGGER NO_LONGER_OFFERED
+BEFORE DELETE
+ON COURSE_OFFERING FOR EACH ROW
+BEGIN
+
+	DELETE FROM REGISTRATION AS r
+	WHERE r.CourseID = old.CourseID and r.SectionID = old.SectionID;
+
+END$$
+DELIMITER ;
+
+
 #Create REGISTRATION Table
 DROP TABLE IF EXISTS REGISTRATION;
 CREATE TABLE REGISTRATION(
@@ -157,4 +233,13 @@ VALUES
 ('ENGG', 'ENGG225', 'L01', 97662159, null),
 ('ENGG', 'ENGG225', 'L01', 32934372, null),
 ('ENGG', 'ENGG225', 'L01', 12345678, null),
-('ENGG', 'ENGG225', 'L01', 82227355, null);
+('ENGG', 'ENGG225', 'L01', 82227355, null),
+('DANG', 'PHYS302', 'L01', 97662159, null),
+('DANG', 'PHYS302', 'L01', 12345678, null),
+('DANG', 'PHYS302', 'L01', 30030377, null),
+('EDUC', 'EDUC215', 'L02', 32934372, null),
+('CASH', 'FNCE211', 'L01', 32934372, null),
+('CASH', 'FNCE211', 'L01', 30038090, null),
+('CASH', 'FNCE211', 'L01', 30042258, null);
+
+#TODO: Can't insert into registration if not in course_offering
