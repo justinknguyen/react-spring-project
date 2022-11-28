@@ -34,9 +34,16 @@ public class StudentService {
     public Student getStudentById(Long studentId) {
         Optional<Student> studentById = studentRepository.findById(studentId);
         if (!studentById.isPresent()) {
-            throw new IllegalStateException("student does'nt exist!");
+            throw new IllegalStateException("student doesn't exist!");
         }
         return studentById.get();
+    }
+    public Student getStudentByUcid(String ucid) {
+        Optional<Student>studentByUcid = studentRepository.findStudentByUcid(ucid);
+        if (!studentByUcid.isPresent()){
+            throw new IllegalStateException("student doesn't exist!");
+        }
+        return studentByUcid.get();
     }
     public void deleteStudent(String ucid) {
         Optional<Student>studentByUcid = studentRepository.findStudentByUcid(ucid);
@@ -61,6 +68,7 @@ public class StudentService {
         }
         studentById.setPassword(newPassword);
     }
+
 
 
 }
