@@ -34,9 +34,9 @@ export default function ViewCourses() {
 							padding: "15px",
 							textAlign: "left",
 						}}
-						key={course.id}
+						key={course.courseId}
 					>
-						ID:{course.id}, Name:{course.name}, Capacity:
+						Name:{course.name}, Capacity:
 						{course.capacity} <br></br>
 						Start Time:{course.startTime}, End Time:{course.endTime}{" "}
 						<br></br>
