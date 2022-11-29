@@ -24,9 +24,9 @@ export default function AddCourse() {
 	const [dept, setDept] = useState("");
 	const [id, setId] = useState("");
 	// const [name, setName] = useState("");
-	const [p1, setP1] = useState("");
-	const [p2, setP2] = useState("");
-	const [p3, setP3] = useState("");
+	// const [p1, setP1] = useState("");
+	// const [p2, setP2] = useState("");
+	// const [p3, setP3] = useState("");
 	const [startdate, setStartdate] = useState();
 	const [enddate, setEnddate] = useState();
 
@@ -135,7 +135,7 @@ export default function AddCourse() {
 						></Checkbox>
 					</div>
 
-					<p>Optional (course must exist in database)</p>
+					{/* <p>Optional (course must exist in database)</p>
 					<TextField
 						id="outlined-basic"
 						label="1. Prerequiste Course ID"
@@ -161,7 +161,7 @@ export default function AddCourse() {
 						fullWidth
 						value={p3}
 						onChange={(e) => setP3(e.target.value)}
-					/>
+					/> */}
 
 					<Button variant="contained" onClick={handleClick}>
 						Submit
