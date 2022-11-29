@@ -60,13 +60,13 @@ public class StudentService {
         return studentByUcid;
     }
     @Transactional
-    public void updateStudentPassword(Long studentId, String oldPassword, String newPassword) {
-        Student studentById = studentRepository.findById(studentId)
+    public void updateStudentPassword(String ucid, String oldPassword, String newPassword) {
+        Student studentByUcid = studentRepository.findStudentByUcid(ucid)
                 .orElseThrow(() -> new IllegalStateException("User not found"));
-        if (oldPassword.length() > 0 && !oldPassword.equals(studentById.getPassword())){
+        if (oldPassword.length() > 0 && !oldPassword.equals(studentByUcid.getPassword())){
             throw new IllegalArgumentException("Wrong password");
         }
-        studentById.setPassword(newPassword);
+        studentByUcid.setPassword(newPassword);
     }
 
 
