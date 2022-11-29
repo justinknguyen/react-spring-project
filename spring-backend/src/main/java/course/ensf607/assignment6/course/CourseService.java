@@ -65,15 +65,23 @@ public class CourseService {
         return courseByCourseName;
     }
     @Transactional
-    public void updateCourseName(Long courseId, String courseName) {
-        Course course = courseRepository.findById(courseId)
+    public void updateCourse(String oldCourseName, String newCourseName, Integer capacity) {
+        Course course = courseRepository.findByName(oldCourseName)
                 .orElseThrow(() -> new IllegalStateException(
-                        "Course id " + courseId + "does not exist"));
-        if (courseName.equals(course.getName())){
+                        "Course id " + oldCourseName + "does not exist"));
+        if (newCourseName.equals(course.getName())){
             throw new IllegalArgumentException("Changing to same course name");
         }
-        if (courseName != null && courseName.length() > 0){
-            course.setName(courseName);
+        if (newCourseName != null && newCourseName.length() > 0){
+//            System.out.println(newCourseName);
+//            System.out.println(course);
+            course.setName(newCourseName);
+        }
+        if (capacity.equals(course.getCapacity())){
+            throw new IllegalArgumentException("Changing to same capacity");
+        }
+        if (capacity != null && capacity > 0){
+            course.setCapacity(capacity);
         }
     }
 
