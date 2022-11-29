@@ -40,7 +40,21 @@ public class CourseController {
         Course course = courseService.getCourseByCourseName(courseName);
         Student student = studentService.getStudentByUcid(ucid);
         course.enrolledStudents(student);
+//        student.enrollCourse(course);
         courseService.updateCourse(course);
+//        studentService.updateStudent(student);
+        return course;
+    }
+
+    @DeleteMapping("{courseName}/students/{ucid}")
+    public Course dropCourseForStudent(@PathVariable String courseName,
+                                        @PathVariable String ucid) {
+        Course course = courseService.getCourseByCourseName(courseName);
+        Student student = studentService.getStudentByUcid(ucid);
+        course.dropStudent(student);
+//        student.enrollCourse(course);
+        courseService.updateCourse(course);
+//        studentService.updateStudent(student);
         return course;
     }
 
