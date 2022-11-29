@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,23 +66,44 @@ public class CourseService {
         return courseByCourseName;
     }
     @Transactional
-    public void updateCourse(String oldCourseName, String newCourseName, Integer capacity) {
+    public void updateCourse(String oldCourseName, String newCourseName, Integer capacity, boolean hasPrerequisite, LocalDate startTime, LocalDate endTime) {
         Course course = courseRepository.findByName(oldCourseName)
                 .orElseThrow(() -> new IllegalStateException(
                         "Course id " + oldCourseName + "does not exist"));
-        if (newCourseName.equals(course.getName())){
-            throw new IllegalArgumentException("Changing to same course name");
-        }
+
         if (newCourseName != null && newCourseName.length() > 0){
-//            System.out.println(newCourseName);
-//            System.out.println(course);
+            Optional<Course> courseByName = courseRepository.findByName(newCourseName);
+            if (courseByName.isPresent()) {
+                throw new IllegalStateException("Cannot change name to existing course");
+            }
+            if (newCourseName.equals(course.getName())){
+                throw new IllegalArgumentException("Changing to same course name");
+            }
             course.setName(newCourseName);
         }
-        if (capacity.equals(course.getCapacity())){
-            throw new IllegalArgumentException("Changing to same capacity");
-        }
+
         if (capacity != null && capacity > 0){
+            if (capacity.equals(course.getCapacity())){
+                throw new IllegalArgumentException("Changing to same capacity");
+            }
             course.setCapacity(capacity);
+        }
+
+        if (hasPrerequisite != course.getHasPrerequisite()){
+            course.setHasPrerequisite(hasPrerequisite);
+        }
+
+        if (startTime != null){
+            if (startTime.equals(course.getStartTime())){
+                throw new IllegalArgumentException("Changing to same start date");
+            }
+            course.setStartTime(startTime);
+        }
+        if (endTime != null){
+            if (endTime.equals(course.getStartTime())){
+                throw new IllegalArgumentException("Changing to same end date");
+            }
+            course.setEndTime(endTime);
         }
     }
 
