@@ -33,11 +33,11 @@ public class StudentController {
         studentService.deleteStudent(ucid);
     }
 
-    @PutMapping(path = "{studentId}")
-    public void updateStudentPassword(@PathVariable("studentId") Long studentId,
-                              @RequestParam String oldPassword,
-                              @RequestParam String newPassword) {
-        studentService.updateStudentPassword(studentId, oldPassword, newPassword);
+    @PutMapping(path = "{ucid}/{oldPassword}/{newPassword}")
+    public void updateStudentPassword(@PathVariable("ucid") String ucid,
+                                      @PathVariable("oldPassword") String oldPassword,
+                                      @PathVariable("newPassword") String newPassword) {
+        studentService.updateStudentPassword(ucid, oldPassword, newPassword);
     }
 
     @GetMapping(path = "{ucid}")
