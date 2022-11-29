@@ -94,7 +94,7 @@ export default function SearchCourse() {
 						Name:{course.name}, Capacity:
 						{course.capacity}, Has Prerequisites:
 						{course.hasPrerequisite.toString()}, Start Date:{" "}
-						{course.startTime}
+						{course.startTime}, END Date: {course.endTime}
 					</div>
 				) : (
 					<div></div>
