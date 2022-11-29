@@ -57,7 +57,7 @@ public class CourseService {
                     "course id " + courseName + "does not exist"
             );
         }
-        courseRepository.deleteById(courseByName.get().getId());
+        courseRepository.deleteById(courseByName.get().getCourseId());
     }
 
     public Optional<Course> searchCourse(String courseName) {
