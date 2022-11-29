@@ -13,6 +13,14 @@ import java.util.Set;
 @Table(name = "course")
 public class Course implements Serializable {
 
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
     @Id
     @SequenceGenerator(
             name = "course_sequence",
@@ -23,7 +31,7 @@ public class Course implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "course_sequence"
     )
-    private Long id;
+    private Long courseId;
     @Column(
             name = "name",
             unique = true
@@ -56,7 +64,7 @@ public class Course implements Serializable {
     }
 
     public Course(Long id, String name, LocalDate startTime, LocalDate endTime, Integer capacity, Boolean hasPrerequisite, Set<Student> enrolledStudents) {
-        this.id = id;
+        this.courseId = id;
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -86,14 +94,6 @@ public class Course implements Serializable {
 //        this.enrolledStudents = enrolledStudents;
 //    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Course setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getName() {
         return name;
@@ -151,5 +151,9 @@ public class Course implements Serializable {
 
     public void enrolledStudents(Student student) {
         enrolledStudents.add(student);
+    }
+
+    public void dropStudent(Student student) {
+        enrolledStudents.remove(student);
     }
 }
