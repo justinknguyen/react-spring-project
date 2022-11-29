@@ -6,6 +6,9 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { Checkbox } from "@mui/material";
 import { useState } from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers";
 
 export default function EditCourse() {
 	const paperStyle = {
@@ -17,25 +20,33 @@ export default function EditCourse() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [dept, setDept] = useState("");
 	const [id, setId] = useState("");
-	const [name, setName] = useState("");
-	const [p1, setP1] = useState("");
-	const [p2, setP2] = useState("");
-	const [p3, setP3] = useState("");
+	const [startdate, setStartdate] = useState();
+	const [enddate, setEnddate] = useState();
 	const [capacity, setCapacity] = useState("");
 	const [newId, setNewId] = useState("");
 	const [hasPrerequisite, setHasPrerequisite] = useState(false);
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		const course = { newCourseName: dept + newId };
-		console.log(course);
-		// TODO: send data to database
 		let query = "";
 		query +=
 			dept !== "" && newId != ""
 				? "newCourseName=" + dept + newId + "&"
 				: "";
 		query += capacity !== "" ? "capacity=" + capacity + "&" : "";
+		query += "hasPrerequisite=" + hasPrerequisite + "&";
+		query += startdate
+			? "startTime=" +
+			  new Date(startdate.$d).toISOString().substring(0, 10) +
+			  "&"
+			: "";
+		query += enddate
+			? "endTime=" +
+			  new Date(enddate.$d).toISOString().substring(0, 10) +
+			  "&"
+			: "";
+		console.log(query);
+		// query +=
 		fetch("http://localhost:8080/api/v1/course/" + id + "?" + query, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
@@ -100,15 +111,23 @@ export default function EditCourse() {
 						value={newId}
 						onChange={(e) => setNewId(e.target.value)}
 					/>
-					{/* <TextField
-						required
-						id="outlined-required"
-						label="Course Name (e.g., Database)"
-						variant="outlined"
-						fullWidth
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-					/> */}
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DatePicker
+							label="Start Date"
+							value={startdate}
+							onChange={(newDate) => setStartdate(newDate)}
+							renderInput={(params) => <TextField {...params} />}
+						/>
+					</LocalizationProvider>
+
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DatePicker
+							label="End Date"
+							value={enddate}
+							onChange={(newDate) => setEnddate(newDate)}
+							renderInput={(params) => <TextField {...params} />}
+						/>
+					</LocalizationProvider>
 					<TextField
 						id="outlined-basic"
 						label="Capacity"
@@ -118,7 +137,7 @@ export default function EditCourse() {
 						onChange={(e) => setCapacity(e.target.value)}
 					/>
 
-					{/* <div>
+					<div>
 						<span>Has Prerequiste?</span>
 						<Checkbox
 							label="hasPrerequisite"
@@ -126,7 +145,7 @@ export default function EditCourse() {
 								setHasPrerequisite(!hasPrerequisite)
 							}
 						></Checkbox>
-					</div> */}
+					</div>
 
 					{/* <TextField
 						id="outlined-basic"
