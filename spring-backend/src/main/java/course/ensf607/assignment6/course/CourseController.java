@@ -3,8 +3,10 @@ package course.ensf607.assignment6.course;
 import course.ensf607.assignment6.student.Student;
 import course.ensf607.assignment6.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,7 +73,12 @@ public class CourseController {
     @PutMapping(path = "{oldCourseName}")
     public void updateCourse(@PathVariable("oldCourseName") String oldCourseName,
                              @RequestParam(required=false) String newCourseName,
-                             @RequestParam(required = false) Integer capacity){
-        courseService.updateCourse(oldCourseName, newCourseName, capacity);
+                             @RequestParam(required = false) Integer capacity,
+                             @RequestParam boolean hasPrerequisite,
+                             @RequestParam(required = false)
+                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startTime,
+                             @RequestParam(required = false)
+                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endTime){
+        courseService.updateCourse(oldCourseName, newCourseName, capacity, hasPrerequisite, startTime, endTime);
     }
 }
