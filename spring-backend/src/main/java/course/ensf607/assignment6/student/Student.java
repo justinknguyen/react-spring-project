@@ -12,6 +12,14 @@ import java.util.Set;
 @Table(name = "student")
 public class Student implements Serializable {
 
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
     @Id
     @SequenceGenerator(
             name = "student_sequence",
@@ -22,7 +30,7 @@ public class Student implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
-    private Long id;
+    private Long studentId;
     @Column(
             name = "username",
             unique = true
@@ -39,13 +47,19 @@ public class Student implements Serializable {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "enrolledStudents")
-    private Set<Course> subjects = new HashSet<>();
+    private Set<Course> subjects = new HashSet<Course>();
+
+//    @Column(
+//            name = "courses"
+//    )
+//    @ManyToMany
+//    private Set<Course> courses = new HashSet<Course>();
 
     public Student() {
     }
 
     public Student(Long id, String username, String password, String ucid, Set<Course> subjects) {
-        this.id = id;
+        this.studentId = id;
         this.username = username;
         this.password = password;
         this.ucid = ucid;
@@ -59,14 +73,20 @@ public class Student implements Serializable {
         this.subjects = subjects;
     }
 
-    public Long getId() {
-        return id;
+    /**
+     * Initial student constructor where it would have 0 classes (e.g first year students)
+     * @param username
+     * @param password
+     * @param ucid
+     */
+    public Student(String username, String password, String ucid) {
+        this.username = username;
+        this.password = password;
+        this.ucid = ucid;
+//        this.subjects = new HashSet<>();
     }
 
-    public Student setId(Long id) {
-        this.id = id;
-        return this;
-    }
+
 
     public String getUsername() {
         return username;
@@ -103,4 +123,6 @@ public class Student implements Serializable {
         this.subjects = subjects;
         return this;
     }
+
+//    public void enrollCourse(Course course) {courses.add(course);}
 }
