@@ -52,7 +52,7 @@ public class StudentService {
                     "student with id" + ucid + "does not exist"
             );
         }
-        studentRepository.deleteById(studentByUcid.get().getId());
+        studentRepository.deleteById(studentByUcid.get().getStudentId());
     }
 
     public Optional<Student> searchStudentByUcid(String ucid) {
@@ -70,5 +70,7 @@ public class StudentService {
     }
 
 
-
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
+    }
 }
