@@ -67,10 +67,11 @@ public class CourseController {
     public Optional<Course> searchCourse(@PathVariable("courseName") String courseName){
         return courseService.searchCourse(courseName);
     }
-
-    @PutMapping(path = "{courseId}")
-    public void updateCourseName(@PathVariable("courseId") Long courseId,
-                                 String courseName){
-        courseService.updateCourseName(courseId, courseName);
+    //MAKE A NEW COURSE
+    @PutMapping(path = "{oldCourseName}")
+    public void updateCourse(@PathVariable("oldCourseName") String oldCourseName,
+                             @RequestParam(required=false) String newCourseName,
+                             @RequestParam(required = false) Integer capacity){
+        courseService.updateCourse(oldCourseName, newCourseName, capacity);
     }
 }
