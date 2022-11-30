@@ -16,6 +16,7 @@ export default function SearchStudent() {
 	// const [isSubmitted, setIsSubmitted] = useState(false);
 	const [id, setId] = useState("");
 	const [student, setStudent] = useState();
+	const [courses, setCourses] = useState();
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -32,6 +33,7 @@ export default function SearchStudent() {
 			})
 			.then((data) => {
 				// setIsSubmitted(true);
+				setCourses(null);
 				setIsError(false);
 				setStudent(data);
 			})
@@ -41,6 +43,26 @@ export default function SearchStudent() {
 				// setIsSubmitted(false);
 			});
 	};
+
+	function handleShowCourse(e) {
+		e.preventDefault();
+
+		fetch("http://localhost:8080/api/v1/student/courses/" + id, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				setCourses(data);
+				setIsError(false);
+			})
+			.catch(() => {
+				console.log("Error");
+				setIsError(true);
+				// setIsSubmitted(false);
+			});
+	}
 
 	// useEffect(()=>{
 	//   fetch("http://localhost:8080/api/v1/student")
@@ -81,6 +103,9 @@ export default function SearchStudent() {
 					<Button variant="contained" onClick={handleClick}>
 						Submit
 					</Button>
+					<Button variant="contained" onClick={handleShowCourse}>
+						Show Courses
+					</Button>
 				</Box>
 			</Paper>
 			<Paper elevation={3} style={paperStyle}>
@@ -92,6 +117,25 @@ export default function SearchStudent() {
 				) : (
 					<div></div>
 				)}
+				<div>
+					{courses
+						? courses.map((course) => {
+								return (
+									<Paper
+										elevation={6}
+										style={{
+											margin: "10px",
+											padding: "15px",
+											textAlign: "left",
+										}}
+										key={course.courseId}
+									>
+										Course:{course.name}
+									</Paper>
+								);
+						  })
+						: ""}
+				</div>
 				{isError ? <div>Error. Please try again.</div> : <div></div>}
 			</Paper>
 		</Container>
