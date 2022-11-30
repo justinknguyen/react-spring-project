@@ -27,8 +27,8 @@ export default function AddCourse() {
 	// const [p1, setP1] = useState("");
 	// const [p2, setP2] = useState("");
 	// const [p3, setP3] = useState("");
-	const [startdate, setStartdate] = useState();
-	const [enddate, setEnddate] = useState();
+	const [startdate, setStartdate] = useState(null);
+	const [enddate, setEnddate] = useState(null);
 
 	const [capacity, setCapacity] = useState(0);
 	const [hasPrerequisite, setHasPrerequisite] = useState(false);
@@ -110,6 +110,7 @@ export default function AddCourse() {
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<DatePicker
 							label="End Date"
+							defaultValue={null}
 							value={enddate}
 							onChange={(newDate) => setEnddate(newDate)}
 							renderInput={(params) => <TextField {...params} />}

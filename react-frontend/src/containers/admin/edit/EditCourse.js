@@ -20,8 +20,8 @@ export default function EditCourse() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [dept, setDept] = useState("");
 	const [id, setId] = useState("");
-	const [startdate, setStartdate] = useState();
-	const [enddate, setEnddate] = useState();
+	const [startdate, setStartdate] = useState(null);
+	const [enddate, setEnddate] = useState(null);
 	const [capacity, setCapacity] = useState("");
 	const [newId, setNewId] = useState("");
 	const [hasPrerequisite, setHasPrerequisite] = useState(false);
@@ -30,7 +30,7 @@ export default function EditCourse() {
 		e.preventDefault();
 		let query = "";
 		query +=
-			dept !== "" && newId != ""
+			dept !== "" && newId !== ""
 				? "newCourseName=" + dept + newId + "&"
 				: "";
 		query += capacity !== "" ? "capacity=" + capacity + "&" : "";
