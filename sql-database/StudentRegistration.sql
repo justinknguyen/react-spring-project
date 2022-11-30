@@ -105,8 +105,6 @@ ADD foreign key (PreReq_CourseID_1) references COURSE(CourseID),
 ADD	foreign key (PreReq_CourseID_2) references COURSE(CourseID),
 ADD	foreign key (PreReq_CourseID_3) references COURSE(CourseID);
 
-#TODO: Can't insert into course if not in department
-
 # Transfering ownership of course from one DeptID to another
 #updates it in course_offering too
 DELIMITER $$
@@ -179,8 +177,7 @@ VALUES
 ('ENGG', 'ENCM511', 'L01', 30),
 ('ENGG', 'ENCM511', 'L02', 30);
 
-#TODO: Can't insert into course_offering if not in course 
-#TODO: Updating DeptID here updates it in registration too
+#Updating DeptID here updates it in registration too
 DELIMITER $$
 CREATE TRIGGER OFFERED_BY_ANOTHER_DEPT
 BEFORE UPDATE
@@ -241,5 +238,3 @@ VALUES
 ('CASH', 'FNCE211', 'L01', 32934372, null),
 ('CASH', 'FNCE211', 'L01', 30038090, null),
 ('CASH', 'FNCE211', 'L01', 30042258, null);
-
-#TODO: Can't insert into registration if not in course_offering

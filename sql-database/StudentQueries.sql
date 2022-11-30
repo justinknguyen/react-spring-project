@@ -1,4 +1,4 @@
-# Show all tables and explain how they are related to one another (keys, triggers (Topic 5-6), etc.)
+# Show all tables and explain how they are related to one another (keys, triggers, etc.)
 # Talk about in Video Demo, show StudentRegistration.sql and explain design choices regarding keys, triggers, etc.
 
 # A basic retrieval query
@@ -12,8 +12,8 @@ from STUDENT_NAMES;
 
 # A retrieval query with ordered results
 # Retrieve Student's last name, first name, and studentID, and sort by last name
-select LName, FName, StudentID 
-from student
+select LName, FName, AdminID 
+from ADMINISTRATION
 order by LName;
 
 # A nested retrieval query
@@ -31,9 +31,9 @@ select LName, FName, CourseID, SectionID
 from (student join registration on student.StudentID=registration.StudentID)
 where CourseID = 'FNCE211';
 
-
 # An update operation with any necessary triggers
-# Change Department of PHYS302 from DANG to WOAH is NOT allowed (is not an existing department in DEPARTMENT, should give error)
+# Change Department of PHYS302 from DANG to WOAH is NOT allowed (is not an existing department in DEPARTMENT)
+# (Should give error)
 update course
 set DepartmentID = 'WOAH'
 where CourseID = 'PHYS302';
@@ -42,6 +42,16 @@ where CourseID = 'PHYS302';
 update course
 set CourseID = 'PHYS202'
 where CourseID = 'PHYS302';
+
+# Changing Department in COURSE_OFFERING is not allowed (should give error)
+update course_offering
+set DeptID = 'LMAO'
+where DeptID = 'CASH';
+
+# Changing Department in REGISTRATION is not allowed (should give error)
+update REGISTRATION
+set DeptID = 'LMAO'
+where DeptID = 'CASH';
 
 # Change Department of PHYS302 from DANG to ENGG is allowed (No error)
 update course
