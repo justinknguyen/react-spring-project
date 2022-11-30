@@ -71,7 +71,7 @@ export default function SearchStudent() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Student ID"
+						label="UCID (e.g., 30030377)"
 						variant="outlined"
 						fullWidth
 						value={id}
@@ -87,7 +87,7 @@ export default function SearchStudent() {
 				<h1>Response</h1>
 				{student ? (
 					<div>
-						ID:{student.ucid}, Name:{student.username}
+						UCID:{student.ucid}, Name:{student.username}
 					</div>
 				) : (
 					<div></div>

@@ -47,7 +47,7 @@ export default function StudentRemove() {
       noValidate
       autoComplete="off"
     >
-      <TextField required id="outlined-required" label="Course ID (e.g., ENSF608)" variant="outlined" fullWidth
+      <TextField required id="outlined-required" label="Course Name (e.g., ENSF608)" variant="outlined" fullWidth
       value = {cid}
       onChange={(e)=>setCid(e.target.value)}
       />

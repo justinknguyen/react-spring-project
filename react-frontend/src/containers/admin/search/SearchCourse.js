@@ -75,7 +75,7 @@ export default function SearchCourse() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Course ID (e.g., ENSF608)"
+						label="Course Name (e.g., ENSF608)"
 						variant="outlined"
 						fullWidth
 						value={id}

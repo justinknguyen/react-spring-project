@@ -61,7 +61,7 @@ export default function RemoveStudent() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Student ID"
+						label="UCID (e.g., 30030377)"
 						variant="outlined"
 						fullWidth
 						value={id}
