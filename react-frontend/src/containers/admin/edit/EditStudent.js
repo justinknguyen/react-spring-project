@@ -72,8 +72,9 @@ export default function EditStudent() {
 				>
 					<p>Target:</p>
 					<TextField
-						id="outlined-basic"
-						label="Student ID"
+						required
+						id="outlined-required"
+						label="UCID (e.g., 30030377)"
 						variant="outlined"
 						fullWidth
 						value={id}
@@ -97,7 +98,8 @@ export default function EditStudent() {
       onChange={(e)=>setUname(e.target.value)}
       /> */}
 					<TextField
-						id="outlined-basic"
+						required
+						id="outlined-required"
 						label="Old Password"
 						variant="outlined"
 						fullWidth
@@ -105,7 +107,8 @@ export default function EditStudent() {
 						onChange={(e) => setOldPass(e.target.value)}
 					/>
 					<TextField
-						id="outlined-basic"
+						required
+						id="outlined-required"
 						label="New Password"
 						variant="outlined"
 						fullWidth

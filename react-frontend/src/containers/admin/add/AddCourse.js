@@ -91,7 +91,7 @@ export default function AddCourse() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Course ID (e.g., ENSF608)"
+						label="Course ID (e.g., 608)"
 						variant="outlined"
 						fullWidth
 						value={id}
@@ -120,7 +120,7 @@ export default function AddCourse() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Max Students"
+						label="Capacity"
 						variant="outlined"
 						fullWidth
 						value={capacity}

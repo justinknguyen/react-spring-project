@@ -86,7 +86,7 @@ export default function EditCourse() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Course ID (e.g., ENSF608)"
+						label="Course Name (e.g., ENSF608)"
 						variant="outlined"
 						fullWidth
 						value={id}
@@ -94,8 +94,7 @@ export default function EditCourse() {
 					/>
 					<p>Edit:</p>
 					<TextField
-						required
-						id="outlined-required"
+						id="outlined-basic"
 						label="Department (e.g., ENGG)"
 						variant="outlined"
 						fullWidth
@@ -103,9 +102,8 @@ export default function EditCourse() {
 						onChange={(e) => setDept(e.target.value)}
 					/>
 					<TextField
-						required
-						id="outlined-required"
-						label="Course ID (e.g., ENSF608)"
+						id="outlined-basic"
+						label="Course ID (e.g., 608)"
 						variant="outlined"
 						fullWidth
 						value={newId}

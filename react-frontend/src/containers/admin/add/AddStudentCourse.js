@@ -63,7 +63,7 @@ export default function AddStudentCourse() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Student ID"
+						label="UCID (e.g., 30030377)"
 						variant="outlined"
 						fullWidth
 						value={sid}
@@ -72,7 +72,7 @@ export default function AddStudentCourse() {
 					<TextField
 						required
 						id="outlined-required"
-						label="Course ID (e.g., ENSF608)"
+						label="Course Name (e.g., ENSF608)"
 						variant="outlined"
 						fullWidth
 						value={cid}
