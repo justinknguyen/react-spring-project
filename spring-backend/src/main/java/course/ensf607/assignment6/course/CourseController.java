@@ -41,8 +41,13 @@ public class CourseController {
                                          @PathVariable String ucid) {
         Course course = courseService.getCourseByCourseName(courseName);
         Student student = studentService.getStudentByUcid(ucid);
+        // Student can only reg for max 6 courses
         if (student.getSubjects().size() >= 6){
             throw new IllegalArgumentException("Cannot enroll for more than 6 classes");
+        }
+        // Course can only reg up to its capacity
+        if (course.getEnrolledStudents().size() >= course.getCapacity()){
+            throw new IllegalArgumentException("Course is full!");
         }
         course.enrolledStudents(student);
         courseService.updateCourse(course);
@@ -68,7 +73,7 @@ public class CourseController {
     public Optional<Course> searchCourse(@PathVariable("courseName") String courseName){
         return courseService.searchCourse(courseName);
     }
-    //MAKE A NEW COURSE
+
     @PutMapping(path = "{oldCourseName}")
     public void updateCourse(@PathVariable("oldCourseName") String oldCourseName,
                              @RequestParam(required=false) String newCourseName,
