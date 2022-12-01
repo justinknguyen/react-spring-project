@@ -1,3 +1,8 @@
+# How to Run
+1. Open the Java files in your preferred IDE
+2. Run `Assignment6Application`
+3. Head to the website! https://justinknguyen.github.io/react-spring-project/ 
+
 # Login Information
 ## Admins (only Admins are able to use this website)
 * admin1 : pass
