@@ -1,5 +1,5 @@
 # Login Information
-## Admins
+## Admins (only Admins are able to use this website)
 * admin1 : pass
 * admin2 : pass
 
