@@ -103,9 +103,13 @@ export default function SearchStudent() {
 					<Button variant="contained" onClick={handleClick}>
 						Submit
 					</Button>
-					<Button variant="contained" onClick={handleShowCourse}>
-						Show Courses
-					</Button>
+					{student ? (
+						<Button variant="contained" onClick={handleShowCourse}>
+							Show Courses
+						</Button>
+					) : (
+						""
+					)}
 				</Box>
 			</Paper>
 			<Paper elevation={3} style={paperStyle}>
