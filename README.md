@@ -1,12 +1,7 @@
 # Login Information
-## Default Logins
-### Admin
-admin : pass
-### Student
-student : pass
-## Database Logins
-### Admin
-### Student
+## Admins
+* admin1 : pass
+* admin2 : pass
 
 
 # Updating the Website on Github Pages
