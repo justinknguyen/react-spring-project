@@ -41,10 +41,11 @@ public class CourseController {
                                          @PathVariable String ucid) {
         Course course = courseService.getCourseByCourseName(courseName);
         Student student = studentService.getStudentByUcid(ucid);
+        if (student.getSubjects().size() >= 6){
+            throw new IllegalArgumentException("Cannot enroll for more than 6 classes");
+        }
         course.enrolledStudents(student);
-//        student.enrollCourse(course);
         courseService.updateCourse(course);
-//        studentService.updateStudent(student);
         return course;
     }
 
@@ -54,9 +55,7 @@ public class CourseController {
         Course course = courseService.getCourseByCourseName(courseName);
         Student student = studentService.getStudentByUcid(ucid);
         course.dropStudent(student);
-//        student.enrollCourse(course);
         courseService.updateCourse(course);
-//        studentService.updateStudent(student);
         return course;
     }
 
