@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppContext } from "../lib/contextLib";
 import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+import Button from '@mui/material/Button';
 import "./Login.css";
+export var userInfo = undefined;
 
 export default function Login() {
   const nav = useNavigate();
@@ -11,26 +12,30 @@ export default function Login() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { userHasAuthenticated } = useAppContext();
-  const { userType } = useAppContext();
 
-  // User Login info
-  const database = [
-    {
-      type: "student",
-      username: "student",
-      password: "pass"
-    },
-    {
-      type: "admin",
-      username: "admin",
-      password: "pass"
-    }
-  ];
+  const [userDB, setUserDB] = useState();
 
   const errors = {
-    uname: "invalid username",
+    uname: "invalid email address",
     pass: "invalid password"
   };
+
+  useEffect(() => {
+		// get registered users
+    fetch("http://localhost:8080/api/v1/registereduser/all", {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setUserDB(data);
+        })
+        .catch(() => {
+          console.log("Error");
+        });
+	}, []);
 
   const handleSubmit = (event) => {
       //Prevent page reload
@@ -39,27 +44,26 @@ export default function Login() {
       var { uname, pass } = document.forms[0];
 
       // Find user login info
-      const userData = database.find((user) => user.username === uname.value);
+      const userData = userDB?.find((user) => user.email === uname.value);
 
       // Compare user info
       if (userData) {
         if (userData.password !== pass.value) {
           // Invalid password
           setErrorMessages({ name: "pass", message: errors.pass });
+          console.log("Error. Invalid Password.");
         } else {
+          userInfo = userData;
           setIsSubmitted(true);
           userHasAuthenticated(true)
-          if (userData.type === "student") {
-            userType(true)
-          } else if (userData.type === "admin") {
-            userType(false)
-          }
           nav("/react-spring-project/home");
         }
       } else {
-        // Username not found
+        // Email not found
         setErrorMessages({ name: "uname", message: errors.uname });
+        console.log("Error. Invalid Email.");
       }
+
   };
 
   // Generate JSX code for error message
@@ -94,7 +98,7 @@ export default function Login() {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Welcome!</div>
+        <div className="title">Login</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
       </div>
     </div>

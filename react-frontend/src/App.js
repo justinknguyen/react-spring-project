@@ -49,6 +49,9 @@ function App() {
                 <LinkContainer to="/react-spring-project/studentremove">
                   <Nav.Link>Remove</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to="/react-spring-project/account">
+                  <Nav.Link>Account</Nav.Link>
+                </LinkContainer>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               </>
             ) : (  // admin view
@@ -65,11 +68,17 @@ function App() {
                 <LinkContainer to="/react-spring-project/adminedit">
                   <Nav.Link>Edit</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to="/react-spring-project/account">
+                  <Nav.Link>Account</Nav.Link>
+                </LinkContainer>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               </>
             )
           ) : (
             <>
+            <LinkContainer to="/react-spring-project/signup">
+                  <Nav.Link>Sign Up</Nav.Link>
+                </LinkContainer>
               <LinkContainer to="/react-spring-project/">
                 <Nav.Link>Login</Nav.Link>
               </LinkContainer>

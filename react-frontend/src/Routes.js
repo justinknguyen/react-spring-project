@@ -3,7 +3,9 @@ import { Route, Routes } from "react-router-dom";
 
 import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
+import Signup from "./containers/Signup";
 import Home from "./containers/Home";
+import Account from "./containers/Account";
 
 import AddStudent from "./containers/admin/add/AddStudent";
 import AddCourse from "./containers/admin/add/AddCourse";
@@ -34,7 +36,9 @@ export default function Links() {
   return (
     <Routes>
         <Route path="/react-spring-project/" element={<Login />} />
+        <Route path="/react-spring-project/signup" element={<Signup />} />
         <Route path="/react-spring-project/home" element={<Home />} />
+        <Route path="/react-spring-project/account" element={<Account />} />
 
         <Route path="/react-spring-project/adminadd" element={<AdminAdd />} />
         <Route path="/react-spring-project/addstudent" element={<AddStudent />} />
